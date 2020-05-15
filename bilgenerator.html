@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bill generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+        <div class="jumbotron h-100">
+                <h1 class="display-4 text-center text-primary" >Bill Generator</h1>
+                <hr class="my-4">
+                <div class="container ml-5">
+                <div class="form-row ml-5">
+                        <div class="form-group col-md-4">
+                          <label for="inputState">Item</label>
+                          <select id="item" class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="Dosa">Dosa</option>
+                            <option value="Tea">Tea</option>
+                            <option value="Roll">Roll</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <label for="inputState">Quantity</label>
+                                <select id="quantity" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                                </select>
+                         </div>
+                        <div class="form-group col-md-3">
+                                <label></label>
+                                <div class="from-control">
+                                    <button type="button" onclick="submit()" class="btn btn-primary mt-2">Submit</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <table class="table table-striped table-sm m-5">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">ITEM</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Final_Including_Tax(5%)</th>
+                  </tr>
+                </thead>
+                
+                
+        </table> 
+    <script>
+                       
+            function submit(){
+                var arr=[];
+                var item=document.getElementById("item").value;
+                var quantity=document.getElementById("quantity").value;
+                var obj={}
+                obj.item=document.getElementById("item").value;
+                obj.quantity=document.getElementById("quantity").value;
+                   // console.log(obj);
+                arr.push(obj);
+                console.log(obj);
+                console.log(arr)
+                Check_bill(obj)               
+            }
+      
+            function Check_bill(data){
+                var bill_withouttax=0;
+                console.log(data)
+               var ar=[];
+               ar.push(data);
+               console.log(ar)
+                if(data.item==="Tea"){
+                    bill_withouttax=10*Number(data.quantity);
+                }
+                else if(data.item==="Dosa"){
+                    bill_withouttax=50*Number(data.quantity);
+                }
+                else if(data.item==="Roll"){
+                    bill_withouttax=60*Number(data.quantity);
+                }           
+                //console.log(bill_withouttax)
+                var including_tax=bill_withouttax+bill_withouttax*(5/100);
+               //submit(bill_withouttax)
+                var display = document.querySelector('table')
+                var row = document.createElement('tr')
+                display.appendChild(row)
+
+                var para = document.createElement('td');
+                para.setAttribute("class","text-center")
+                para.textContent = data.item
+                row.appendChild(para);
+
+                var para = document.createElement('td');
+                para.setAttribute("class","text-center")
+                para.textContent = data.quantity
+                row.appendChild(para);
+
+                var para = document.createElement('td');
+                para.setAttribute("class","text-center")
+                para.textContent = bill_withouttax ;
+                row.appendChild(para);
+
+                var para = document.createElement('td');
+                para.setAttribute("class","text-center")
+                para.textContent = including_tax ;
+                row.appendChild(para);
+        }
+ </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
